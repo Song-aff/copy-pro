@@ -6,7 +6,7 @@ copy directory with ForEach
 3. 运行 `npx coppy`
 ## Config
 ### example
-```
+```js
 const { defineConfig } = require("copy-pro");
 const config = defineConfig({
   //待复制目录
@@ -49,7 +49,7 @@ module.exports = config;
 `fs.readFile--sting-->plugin1--sting-->...--sting-->pluginN--sting-->fs.writeFile`
 
 plugin的类型如下
-```
+```js
 type pluginType = (param: {
   key: {
     full: pathType;
@@ -70,7 +70,7 @@ type pluginType = (param: {
 
 ### jsPlugin
 在库中提供了一个自带的jsPlugin，可以通过在代码中的注释来进行代码片段的替换和忽略
-```
+```js
 const jsPlugin = require('copy-pro/dist/src/plugin/jsPlugin')
 replaceMap={replaceID:replaceCode}
 ......
@@ -88,7 +88,7 @@ plugins: [jsPlugin(replaceMap)
 
 
 ### example
-```
+```js
 const jsPlugin = require('copy-pro/dist/src/plugin/jsPlugin')
 const { defineConfig } = require('copy-pro')
 const { version } = require('./package.json')
