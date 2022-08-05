@@ -49,7 +49,7 @@ module.exports = config;
 `fs.readFile--sting-->plugin1--sting-->...--sting-->pluginN--sting-->fs.writeFile`
 
 plugin的类型如下
-```js
+```ts
 type pluginType = (param: {
   key: {
     full: pathType;
