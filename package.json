@@ -1,7 +1,7 @@
 {
   "name": "copy-pro",
   "version": "0.0.6",
-  "description": "",
+  "description": "copy directory with ForEach",
   "main": "./dist/src/index.js",
   "bin": {
     "coppy": "./dist/src/copy-pro.js"
@@ -38,10 +38,11 @@
     "type": "git",
     "url": "git+https://github.com/Song-aff/copy-pro.git"
   },
-  "author": "",
+  "author": "songpengfei",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Song-aff/copy-pro/issues"
   },
+  "keywords": ["copy","sync"],
   "homepage": "https://github.com/Song-aff/copy-pro#readme"
 }
