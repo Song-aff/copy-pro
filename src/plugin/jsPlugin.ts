@@ -20,6 +20,7 @@ const jsPlugin: (
 ) => {
   return ({ key, data }) => {
     const _replaceMapList: { id: string; value: string }[] = [];
+    let needGenerate = false;
     if (![".js", ".jsx", ".tsx", ".ts"].includes(key.parse.ext)) {
       return data;
     }
@@ -40,6 +41,7 @@ const jsPlugin: (
           : -1;
         if (leadingIgonreCommentsIndex !== -1) {
           path.node.leadingComments![leadingIgonreCommentsIndex].ignore = true;
+          needGenerate = true;
           path.remove();
           path.skip();
           return;
@@ -62,6 +64,7 @@ const jsPlugin: (
             ].value.trim();
           // 匹配replaceID
           let replaceID = "";
+          needGenerate = true;
           if (/\{#(\w+)\}/.test(repalceCommentsValue)) {
             replaceID = /\{#(\w+)\}/.exec(repalceCommentsValue)![1];
           } else {
@@ -88,6 +91,10 @@ const jsPlugin: (
         }
       },
     });
+    // 未命中，不用处理
+    if (!needGenerate) {
+      return data;
+    }
     const { code } = generate(ast);
     let _code = code;
     // 对replace统一替换

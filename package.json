@@ -1,6 +1,6 @@
 {
   "name": "copy-pro",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "copy directory with ForEach",
   "main": "./dist/src/index.js",
   "bin": {

@@ -31,6 +31,7 @@ var jsPlugin = function (replaceMap, prettierOpt) {
     return function (_a) {
         var key = _a.key, data = _a.data;
         var _replaceMapList = [];
+        var needGenerate = false;
         if (![".js", ".jsx", ".tsx", ".ts"].includes(key.parse.ext)) {
             return data;
         }
@@ -50,6 +51,7 @@ var jsPlugin = function (replaceMap, prettierOpt) {
                     : -1;
                 if (leadingIgonreCommentsIndex !== -1) {
                     path.node.leadingComments[leadingIgonreCommentsIndex].ignore = true;
+                    needGenerate = true;
                     path.remove();
                     path.skip();
                     return;
@@ -66,6 +68,7 @@ var jsPlugin = function (replaceMap, prettierOpt) {
                     var repalceCommentsValue = path.node.leadingComments[leadingRepalceCommentsIndex].value.trim();
                     // 匹配replaceID
                     var replaceID = "";
+                    needGenerate = true;
                     if (/\{#(\w+)\}/.test(repalceCommentsValue)) {
                         replaceID = /\{#(\w+)\}/.exec(repalceCommentsValue)[1];
                     }
@@ -92,6 +95,10 @@ var jsPlugin = function (replaceMap, prettierOpt) {
                 }
             },
         });
+        // 未命中，不用处理
+        if (!needGenerate) {
+            return data;
+        }
         var code = (0, generator_1.default)(ast).code;
         var _code = code;
         // 对replace统一替换
