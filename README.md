@@ -1,5 +1,5 @@
 # copy-pro
-copy directory with ForEach
+copy directory like ForEach
 ## Start
 1. 安装`npm install copy-pro`
 2. 配置`copy-pro.config.js`
